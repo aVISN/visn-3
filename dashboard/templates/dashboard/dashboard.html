@@ -95,7 +95,7 @@
                                 </div>
                                 <!-- files -->
                                 <div class="col-2 text-center pt-4 mt-2 ps-5" height="150">
-                                    <h1 class="file_number">8</h1>
+                                    <h1 class="file_number">0</h1>
                                     <h5 class="pt-4 mt-3">Files</h5>
                                     
                                 </div>
@@ -210,3 +210,9 @@
             
         </div>            
     {% endblock content %}
+    {% block js %}
+        <script src="{% static 'js/zepto.min.js' %}" ></script>
+        <script src="{% static 'js/proj.js' %}" ></script>
+        <script src="{% static 'js/chat.js' %}" ></script>
+    {% endblock js %}
+    

@@ -132,8 +132,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'chat', 'static'),
+    os.path.join(BASE_DIR, 'contacts', 'static'),
+    os.path.join(BASE_DIR, 'dashboard', 'static'),
+    os.path.join(BASE_DIR, 'files', 'static'),
+    os.path.join(BASE_DIR, 'frontpage', 'static'),
+    os.path.join(BASE_DIR, 'projects', 'static'),
+]
 
 # add crispy forms bootstrap5 templates
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -141,9 +151,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+
 
 # set redirects for successful login/logout requests
 LOGIN_REDIRECT_URL = 'dashboard'

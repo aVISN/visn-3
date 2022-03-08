@@ -1,5 +1,76 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
 
-    <p>Register here</p>
+{% block styles %}
+    <link href="{% static 'css/register-style.css' %}" rel="stylesheet"/>
+{% endblock styles%}
+{% block content %}
+<div class="sidenav">
+    <div class="login-main-text">
+        <img src="{% static 'images/visn-logo.png' %}" id="button-size">
+       <h2>Visn<br> Register Page</h2>
+       <p>Register here to access.</p>
+    </div>
+ </div>
+ <div class="main">
+     
+    <div class="col-md-6 col-sm-12">
+       <div class="login-form">
+          <form method="POST" action="" autocomplete="off">
+            {% csrf_token %}
+
+            <div class="text-box">
+                <!-- <input type="user_name" name="name" class="form-control"  id="roundcorners" required autocomplete="off" > -->
+                
+                {{form.username}}
+                <label for="user_name" class="label-name">
+                    <span class="content-name">{{form.username.label}}</span>
+                </label>
+             </div>
+            <div class="text-box">
+                <!-- <input type="email" class="form-control" id="roundcorners" required autocomplete="off" value="{{email}}"> -->
+                {{form.email}}
+                <label for="user_name" class="label-name">
+                    <span class="content-name">Email</span>
+                </label>
+             </div>
+             <div class="text-box">
+                <!-- <input type="first_name" class="form-control" id="roundcorners" required autocomplete="off" value="{{first_name}}"> -->
+                {{form.first_name}}
+                <label for="user_name" class="label-name">
+                    <span class="content-name">First Name</span>
+                </label>
+             </div>
+             <div class="text-box">
+                <!-- <input type="last_name" class="form-control" id="roundcorners" required autocomplete="off" value="{{last_name}}"> -->
+                {{form.last_name}}
+                <label for="user_name" class="label-name">
+                    <span class="content-name">Last Name</span>
+                </label>
+             </div>
+             <div class="text-box">
+                <input type="password" class="form-control" id="roundcorners" name="password1" required id="id_password1" required autocomplete="off">
+                <!-- {{form.password1}} -->
+                <label for="user_name" class="label-name">
+                    <span class="content-name">{{form.password1.label}}</span>
+                </label>
+             </div>
+             <div class="text-box">
+                <!-- <input type="password" class="form-control" id="roundcorners" required autocomplete="off"> -->
+                <input type="password" class="form-control" id="roundcorners" name="password2" required id="id_password2" required autocomplete="off">
+                <!-- {{form.password2}} -->
+                <label for="user_name" class="label-name">
+                    <span class="content-name">Confirm Password</span>
+                </label>
+             </div>
+             <button type="submit" class="btn btn-blue" name="Create User">Register</button>
+             <div class="d-flex justify-content-between align-items-center"></div>
+          </form>
+       </div>
+    </div>
+ </div>
+
+    <!-- <p>Register here</p>
     <form method="POST" action="">
         {% csrf_token %}
         {{form.username.label}}
@@ -21,6 +92,7 @@
         {{form.password2}}
         <br>
         <input type="submit" name="Create User">
-    </form>
+    </form> -->
 
     {{form.errors}}
+{% endblock content %}
