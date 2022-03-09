@@ -1,32 +1,45 @@
+{% load static %}
 {% load crispy_forms_tags %}
 
+{% block msgjs %}
+    <script src="{% static 'js/magic-chat.js' %}" ></script>     
+{% endblock %}
+
+
+
 <!-- Message Icon -->
-   <div class="container fixed-bottom text-end me-5 pb-5">
-<button id="chat_ui" style="background-color: white; border:none;">
+<div class="d-flex justify-content-end fixed-bottom pe-3 pb-3">
+
+<button onclick="chatIconOff()" id="chat_ui" style="background-color: rgba(255, 255, 255, 0); border:none;">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
             <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
             <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
         </svg>
-    </div>
 </button>
 
-<div id="chatback" style="display: none;position: absolute;top: 0%; left:0%; width:100%; height:1100px; background-color:black; z-index:1;-moz-opacity: 0.5; opacity:0.5;"></div>
 
-<li id="chat_li" style="display: none; position: absolute;top:25%;left:25%;border:3px solid #ccc;background:white;z-index: 2;width: 600px; height: 260px; padding: 20px;">
-    <label id="x" style="position: relative;top:0px;left: 95%;font-size: 25px;cursor: pointer;">x</label>
-    <div>
-       {% for target_user in target_users%}
-       <button class="talker_button" talker="{{target_user.username}}" >{{target_user.username}}</button>
-       {%endfor%}
-    </div>
-    <form method="POST">
+<!-- <div id="chatback" style="display: none;position: absolute;top: 0%; left:0%; width:100%; height:1100px; background-color:black; z-index:1;-moz-opacity: 0.5; opacity:0.5;"></div> -->
 
-       <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
-       {% csrf_token %}
- 
-       {{ chat_form|crispy }}
+    <li id="chat_li" class="" style="display: none; border:3px solid #ccc;background:white;z-index: 3;width: 340px; height: 240px; padding: 10px;"> <!--position: absolute;top:68%;left:72%;-->
+        <label id="x" onclick="chatIconOn()" style="position: relative;top:0px;left: 95%;font-size: 25px;cursor: pointer;">x</label>
+        <div>
+        {% for target_user in target_users%}
+        <button class="talker_button btn-sm btn-outline-success" talker="{{target_user.username}}" >{{target_user.username}}</button>
+        {%endfor%}
+        </div>
+        <form method="POST">
+
+        <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
+        {% csrf_token %}
     
-       <button type="submit" class="btn btn-success btn-lg">send</button>
- 
-    </form>
-</li>
+        {{ chat_form }} <!--|crispy-->
+        
+        <button type="submit" class="btn btn-light btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+            </svg>
+        </button>
+    
+        </form>
+    </li>
+</div>

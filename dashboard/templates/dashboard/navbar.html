@@ -6,7 +6,7 @@
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse" id="navbarsExample04">
+        <div class="navbar-collapse collapse" style="z-index: 2;"id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-md-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
@@ -27,7 +27,7 @@
             </ul>
             <div class="navbar-nav">
                 <div class="nav-item mt-2 me-2 pt-1">
-                    <a class="nav-link">Hello, <span style="color:rgb(250, 212, 107);">{{request.user.username}}</span></a>
+                    <a class="nav-link" style="pointer-events: none;">Hello, <span style="color:rgb(250, 212, 107);">{{request.user.username}}</span></a>
                 </div>
                 
                 <!-- <img src="#" width="30" height="30" class="invisible"> -->
@@ -38,16 +38,16 @@
                 <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
                                 <!-- user icon -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                                 </svg>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <!-- </a> -->
+                            <!-- <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                            </ul>
+                            </ul> -->
                         </li>
                     </ul>
                 </div>
@@ -74,7 +74,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'pass_change' %}">Change Password</a></li>
                                     <li><a class="dropdown-item" href="{% url 'email_change' %}">Change Email</a></li>
-                                    <li><a class="dropdown-item" href="#">Change Phone Number</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

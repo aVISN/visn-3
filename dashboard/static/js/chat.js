@@ -4,7 +4,7 @@ $(function(){
         $('.talker_button').each(function(){
             $(this).css('background-color', 'white');
         });
-        $(this).css('background-color', 'green');
+        // $(this).css('background-color', 'green');
     });
 
     $("body").on('click', '#chat_ui', function(){
