@@ -16,7 +16,7 @@
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <title>3D Scan Design</title>
+    <title>Visn</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -27,8 +27,9 @@
 
   <body>
 
-    <header>
-      <div class="collapse bg-dark" id="navbarHeader">
+    <!--<header>
+
+       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
@@ -39,37 +40,60 @@
               <h4 class="text-white">Contact</h4>
               <h5 class="text-white">Email: <span class="text-primary">contact@3dscan.design</span></h5>
               <h5 class="text-white">Login: <span class="text-primary"><a href="{% url 'login' %}">Login</a></span></h5>
-              <h5 class="text-white">Register: <span class="text-primary"><a href="{% url 'register' %}">Register</a></span></h5>
+              <h5 class="text-white">Register: <span class="text-primary"><a href="{% url 'register' %}">Register</a></span></h5> -->
               <!-- <ul class="list-unstyled">
                 <li><a href="#" class="text-white">Follow on Twitter</a></li>
                 <li><a href="#" class="text-white">Like on Facebook</a></li>
                 <li><a href="#" class="text-white">Email me</a></li>
               </ul> -->
-            </div>
+            <!-- </div>
           </div>
         </div>
       </div>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
           <div href="#" class="navbar-brand d-flex align-items-center">
-            
-            <strong class="text-primary"><span class="text-danger">3D Scan</span> Design</strong>
-            <i class="far fa-lightbulb text-success" style="margin:0 5px;"></i>
+            <img src="{% static 'images/visn-logo.png' %}" class="rounded-1 border border-danger" width="100" height="30">
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
+      </div> 
+    </header>-->
+    
+    <nav class="sticky-top navbar navbar-expand-md navbar-dark bg-dark pb-1 pt-1" aria-label="Fourth navbar example">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="{% static 'images/visn-logo.png' %}" class="rounded-1 border border-danger" width="100" height="30"></a>
+          <!-- <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
+                
+              </div>
+            </button> -->
+            <ul class="navbar-nav">
+              <li class=" px-3">
+                <a href="{% url 'login' %}" class="btn btn-primary btn-md  align-self-end" role="button" aria-pressed="true">Login</a>
+              </li>
+              <li>
+                <a href="{% url 'register' %}" class="btn btn-secondary btn-md align-self-end" role="button" aria-pressed="true">Register</a>
+              </li>
+            </ul> 
+        
+          
       </div>
-    </header>
+  </nav>
+
+
 
     <main role="main">
 
-      <section class="jumbotron text-center">
+      <section class="jumbotron text-center rounded-0" style="height:300px;background-color: rgb(0, 71, 119);">
         <div class="container">
-          <h1 class="jumbotron-heading text-secondary">Trying to model a complex contour?</h1>
-          <p class="lead text-secondary">We provide state of the art laser scanning, 3D modeling, and 3D prototyping.</p>
-          <p class="text-primary">Check out our lightbulb examples below!</p>
+          <h1 class="jumbotron-heading text-white">Welcome Entrepreneurs!</h1>
+          <p class="lead text-white">Visn is your one stop shop to create your own website up and running that includes a project management network.</p>
+          <!-- <p class="text-white">Like to work with us?</p> <a href="{% url 'register' %}" class="btn btn-dark btn-md align-self-end" style="color: rgb(255, 236, 194);">Register now!</a></p> -->
+          <!-- <a class="btn btn-lg btn-primary active" href="{% url 'dashboard' %}"></a> -->
           <!-- <p>
             <a href="#" class="btn btn-primary my-2">Main call to action</a>
             <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -77,62 +101,27 @@
         </div>
       </section>
 
-      <div class="album py-5 bg-secondary">
+      <div class="album py-5 bg-light">
         <div class="container">
 
           <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="d-flex align-self-center rounded-3 pt-4 img-fluid" src="{% static 'images/lightbulbscan.jpg'%}" width="250px" >
-                <div class="card-body">
-                  <h5 class="text-center text-danger">3D Scanning</h5>
-                  <hr>
-                  <p class="card-text">3D Scanning is a great way to capture complex geometry that would otherwise be difficult to measure and represent through a model!</p>
-                  <!-- <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div> -->
-                </div>
-              </div>
+            <div class="col-md-3 text-center">
+                  <h5 class="btn btn-warning btn-lg  text-black p-4 pb-5 active" style="height: 50px;background-color: bisque;pointer-events: none;">Template Website</h5>
+                  <p class="px-4 mt-3" width="255px">Getting started with a website can be one of the hardest parts. Visn includes a template website to help new Entrepreneurs create their first online presence.</p>
             </div>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="d-flex align-self-center rounded-3 pt-4 img-fluid" src="{% static 'images/Lightbulb3DModel.PNG' %}" width="250px" >
-                <div class="card-body">
-                  <h5 class="text-center text-primary">3D Modeling</h5>
-                  <hr>
-                  <p class="card-text"> Utilizing SolidWorks, Autodesk, and other softwares, our 3D Modeling can bring your idea to life!</p>
-                  <!-- <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div> -->
-                </div>
-              </div>
-            </div>        
+            <div class="col-md-3 text-center">
+              <h5 class="btn btn-warning btn-lg  text-black p-4 pb-5 active" style="height: 50px;background-color: bisque;pointer-events: none;">Project Management</h5>
+              <p class="px-4 mt-3"> Visn provides an app that allows contractors to manage projects, files, contacts, and messages. All of this in one convenient location.</p>
+            </div>
+            <div class="col-md-3 text-center">
+              <h5 class="btn btn-warning btn-lg  text-black p-4 pb-5 active" style="height: 50px;background-color: bisque;pointer-events: none;">Client Network</h5>
+              <p class="px-4 mt-3">Clients are the heart of Entrepreneurship! Visn is designed for entrepreneurs to gain and manage a network of clients and their projects.</p>
+            </div>
+            <div class="col-md-3 text-center">
+              <h5 class="btn btn-warning btn-lg  text-black p-4 pb-5 active" style="height: 50px;background-color: bisque;pointer-events: none;">Full Data Control</h5>
+              <p class="px-4 mt-3">With Visn, you are in control of your own data! No more worrying what someone will do with it or who they will sell it to.</p>
+            </div>
 
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="d-flex align-self-center rounded-3 pt-4 img-fluid" src="{% static 'images/Lightbulb3DPrint.jpg' %}" width="250px" >
-                <div class="card-body">
-                  <h5 class="text-center text-success">3D Prototyping</h5>
-                  <hr>
-                  <p class="card-text">With 3D printing and cnc machining capabilities your idea can then be manufactured in real life! </p>
-                  <!-- <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div> -->
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -141,10 +130,10 @@
 
     <footer class="text-muted">
       <div class="container">
-        <p class="float-right">
+        <!-- <p class="float-right">
           <a href="#">Back to top</a>
-        </p>
-        <p>Email us at:  <strong>contact@3dscan.design</strong></p>
+        </p> -->
+        <p>Email us at:  <strong>contact@visn.app</strong></p>
       </div>
     </footer>
 
