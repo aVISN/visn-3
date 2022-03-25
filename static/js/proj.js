@@ -1,16 +1,16 @@
 $(function(){
     function create_content(datas){
-        var content = $('<ul></ul>');
+        var content = $('<ul class="ps-0"></ul>');
         $.each(datas['task_texts'], function(index, item){
-            content.append($('<li>' + item + '</li>'));
+            content.append($('<li class="mb-2 btn btn-lg btn-block btn-warning" style="width:100%; list-style-type:none;background-color: bisque;">' + item + '</li>'));
         });
         $('#tasks').children().remove();
         $('#tasks').append(content);
     };
     function create_content2(datas){
-        var content = $('<ul></ul>');
+        var content = $('<ul class="ps-0"></ul>');
         $.each(datas['file_infos'], function(index, item){
-            content.append($('<li>' + item + '</li>'));
+            content.append($('<li class="mb-2 btn btn-lg btn-block btn-success text-black" style="width:100%;list-style-type:none;background-color: aquamarine;">' + item + '</li>'));
         });
         $('#updates').children().remove();
         $('#updates').append(content);

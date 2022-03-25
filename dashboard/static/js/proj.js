@@ -22,9 +22,10 @@ $(function(){
         $.ajax({url: "/dashboard/project_view/" + project_id + '/', 
                 dataType: "json",
                 success: function(datas){
+                                var deadlineconvert = new Date(datas['deadline']);
                                 console.log(datas);
                                 $('.project_name').text(datas['name']);
-                                $('.project_deadline').text(datas['deadline']);
+                                $('.project_deadline').text(deadlineconvert);
                                 $('.project_discription').text(datas['discription']);
                                 $('.file_number').text(datas['file_number']);
                                 $('.create_user').text(datas['create_user']);
