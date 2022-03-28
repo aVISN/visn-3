@@ -44,6 +44,7 @@
                 {{ file.filename }}
               </a>
             </td>
+            <td><a href="{% url 'del_file' file.id %}">del</a></td>
           <tr>
         {% endfor %}
       </tbody>
