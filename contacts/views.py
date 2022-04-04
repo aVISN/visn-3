@@ -37,5 +37,6 @@ def contactsView(request):
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
     context['chat_form'] = MessageForm()
     context['target_users'] = User.objects.all()
+    context['navbar'] = 'contacts'
 
     return render(request, 'contacts.html', context)

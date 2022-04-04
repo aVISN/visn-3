@@ -9,19 +9,19 @@
         <div class="navbar-collapse collapse" style="z-index: 2;"id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                    <a class="nav-link {% if navbar == 'dashboard' %}active{% endif %}" aria-current="page" href="{% url 'dashboard' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contacts' %}">Contacts</a>
+                    <a class="nav-link {% if navbar == 'contacts' %}active{% endif %}" href="{% url 'contacts' %}">Contacts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'files' %}">Files</a>
+                    <a class="nav-link {% if navbar == 'files' %}active{% endif %}" href="{% url 'files' %}">Files</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+                    <a class="nav-link {% if navbar == 'projects' %}active{% endif %}" href="{% url 'projects' %}">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'chat:chat' %}">Chat</a>
+                    <a class="nav-link {% if navbar == 'chat' %}active{% endif %}" href="{% url 'chat:chat' %}">Chat</a>
                 </li>
                 
             </ul>

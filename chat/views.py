@@ -47,4 +47,7 @@ def chatView(request):
     context['chat_form'] = form
     context['last_talks'] = last_talks
     context['target_users'] = User.objects.all()
+
+    context['navbar'] = 'chat'
+
     return render(request, 'chat/chat.html', context)

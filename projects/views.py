@@ -39,6 +39,9 @@ def projectsView(request):
             to_name = f.cleaned_data.get('mto')
             mto = User.objects.filter(username=to_name).first()
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
+
+    context['navbar'] = 'projects'
+
     return render(request, 'projects/projects.html', context)
 
 def singleProjectView(request, project_id):

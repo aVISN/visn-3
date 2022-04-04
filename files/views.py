@@ -32,6 +32,8 @@ def filesView(request):
             mto = User.objects.filter(username=to_name).first()
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
 
+    context['navbar'] = 'files'
+
     return render(request, 'files/files.html', context)
 
 

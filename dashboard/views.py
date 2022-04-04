@@ -31,6 +31,9 @@ def dashboardView(request):
             to_name = f.cleaned_data.get('mto')
             mto = User.objects.filter(username=to_name).first()
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
+
+    context['navbar'] = 'dashboard'
+    
     return render(request, 'dashboard/dashboard.html', context)
 
 def projectView(request, project_id):
