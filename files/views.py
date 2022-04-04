@@ -6,6 +6,7 @@ from django.http import HttpResponse, FileResponse
 from .models import *
 from dashboard.forms import *
 
+from django.contrib import messages
 
 def filesView(request):
     context = {}
@@ -74,3 +75,16 @@ def file_response_download1(request, filepath):
     response['content_type'] = "application/octet-stream"
     response['Content-Disposition'] = 'attachment; filename=' + os.path.split(filepath)[-1]
     return response
+
+def del_file(request, file_id):
+    if not request.user.is_authenticated:
+        return redirect(reverse_lazy('login'))
+    projfile = ProjFile.objects.filter(id=file_id).first()
+    if not projfile:
+        messages.info(request, 'no file!')   #success
+        return redirect(reverse_lazy('files'))
+    filepath = os.path.join(settings.MEDIA_ROOT, projfile.filename.name)
+    print(filepath)
+    projfile.delete()
+    os.remove(filepath)
+    return redirect(reverse_lazy('files'))

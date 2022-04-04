@@ -33,6 +33,20 @@
                         {%endfor%}
                     </ul>
                     </div>
+                    <select id='del_members'>
+                        <option></option>
+                        {%for member in proj_members%}
+                        <option value="{{member.id}}">{{member.username}}</option>
+                        {%endfor%}
+                    </select>
+                    <span project_id='{{project.id}}' id="proj_del">del</span>
+                    <select id='add_members'>
+                        <option></option>
+                        {%for member in proj_non_members%}
+                        <option value="{{member.id}}">{{member.username}}</option>
+                        {%endfor%}
+                    </select>
+                    <span project_id='{{project.id}}' id="proj_add">add</span>
             </div>
        </div>
     </div>

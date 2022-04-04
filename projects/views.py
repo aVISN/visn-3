@@ -1,6 +1,7 @@
 from asyncio import tasks
 from unittest import result
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 import math
 from dashboard.forms import *
@@ -19,6 +20,7 @@ def projectsView(request):
     else:
         projects = Project.objects.filter(create_user=request.user).all()
         projects2 = request.user.pmembers.all()
+    projects = list(projects)
     for p in projects2:
         if p not in projects:
             projects.append(p)
@@ -49,6 +51,17 @@ def singleProjectView(request, project_id):
     context['project'] = project
     context['files'] = ProjFile.objects.filter(project=project).all()
     users = User.objects.all()
+
+    proj_members = list(project.members.all())
+    proj_non_members = set(users) - set(proj_members)
+    if project.create_user in proj_members:
+        proj_members.remove(project.create_user)
+    if project.create_user in proj_non_members:
+        proj_non_members.remove(project.create_user)
+    
+    context['proj_members'] = proj_members
+    context['proj_non_members'] = proj_non_members
+
     chat_form = MessageForm()
     context['target_users'] = users
     context['chat_form'] = chat_form
@@ -110,5 +123,24 @@ def addTask(request):
     form.fields['project'].queryset  = Project.objects.filter(create_user=request.user).all()
     return render(request, 'projects/new_task.html', {'form': form})
 
+def addMember(request, project_id, user_id):
+    project = Project.objects.filter(id=project_id).first()
+    if not project:
+        return JsonResponse({'status': 0, 'info': 'Project was not existed!'})
+    user = User.objects.filter(id=user_id).first()
+    if not project:
+        return JsonResponse({'status': 0, 'info': 'User was not existed!'})
+    project.members.add(user)
+    project.save()
+    return JsonResponse({'status': 1, 'info': 'success!'})
 
-
+def delMember(request, project_id, user_id):
+    project = Project.objects.filter(id=project_id).first()
+    if not project:
+        return JsonResponse({'status': 0, 'info': 'Project was not existed!'})
+    user = User.objects.filter(id=user_id).first()
+    if not project:
+        return JsonResponse({'status': 0, 'info': 'User was not existed!'})
+    project.members.remove(user)
+    project.save()
+    return JsonResponse({'status': 1, 'info': 'success!'})
