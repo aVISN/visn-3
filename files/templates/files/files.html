@@ -1,6 +1,10 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 
+<!-- {% block filestyles %}
+
+{% endblock %} -->
+  
 {% block content %}
     <!-- <h1>All Files User is allowed to see</h1>
     {%for file in files%}
@@ -11,7 +15,7 @@
 
     <p>
       <!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
-      <a href="{% url 'new_file' %}" class="btn btn-success btn-lg">Upload file</a>
+      <a href="{% url 'new_file' %}" class="btn btn-lg" id="file-up-btn">Upload file</a>
     </p>
 
       <div class="search-wrapper">
