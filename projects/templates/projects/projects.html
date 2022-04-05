@@ -17,16 +17,18 @@
 
 
 	<hr />
-	<div class="row  mt-2">
+	<div class="row  mt-2  mb-2">
 		<div id="project-search" class="col text-center align-self-center" >
-		<form class="search">
-		Search by Keyword
-		<input placeholder="Spaceships" name="search_text"></input>
-		<button class="search-btn">
-		<i class="fas fa-search"></i>
-	</button>
-		</form>
+			<form class="search">
+				Search
+				<input placeholder="keywords" name="search_text"></input>
+				<button class="search-btn">
+				<i class="fas fa-search"></i>
+				</button>
+			</form>
+		</div>
 	</div>
+	<hr class="mt-3" style="height:1px;border:none;"/>
 
 	<div class="row mt-2">
 		<div class="col" style="padding-top:10px;">
@@ -34,7 +36,7 @@
 				{% for group_project in projects %}
 					<div class="row text-center justify-content-center">
 						{%for project in group_project%}
-						<div class="border col-sm-3 p-3 rounded-3 mx-1 mt-2">
+						<div class="border col-sm-3 p-3 rounded-3 mx-2 mt-3" style="box-shadow: 2px 6px 6px #bdbdbd;">
 							<p>
 							<!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
 							<a href="{% url 'project' project.id%}" class="btn btn-success btn-lg">{{project.name}}</a>
