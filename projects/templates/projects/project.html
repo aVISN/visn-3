@@ -3,49 +3,91 @@
 
 {% block content %}
 
-    <div class="col-md-10" style="padding-top:10px;">
-       <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
+       <div class="container w-50" >
+            <div class="row mt-4">
+                <div class="col">
                     <h3 class="dashboard-card-title">
                         {{project.name}}
                     </h3>
-                    <hr class="rounded">
                     <h5>Deadline</h5>
                     <span>{{project.deadline}}</span>
-                    <hr class="rounded">
-                    <p>
-                        {{project.discription}}
+                </div>
+                <div class="col">
+                    <p class="border text-center h-100">
+                        {{project.description}}
                     </p>
-                    <hr class="rounded">
-                    <h5>Files</h5>
+                </div>
+                <hr class="mt-2"> 
+            </div>
+            <div class="row">
+                <h5>Files</h5>
+                <div class="col border rounded-3" style="height:200px;">
                     <ul>
                         {% for file in files %}
                         <a href="{{ file.filename.url }}" class="btn btn-success btn-sm" target="_blank">
                             {{ file.filename }}
-                          </a>
+                        </a>
                         {%endfor%}
                     </ul>
-                    </div>
-                    <select id='del_members'>
-                        <option></option>
-                        {%for member in proj_members%}
-                        <option value="{{member.id}}">{{member.username}}</option>
-                        {%endfor%}
-                    </select>
-                    <span project_id='{{project.id}}' id="proj_del">del</span>
-                    <select id='add_members'>
-                        <option></option>
-                        {%for member in proj_non_members%}
-                        <option value="{{member.id}}">{{member.username}}</option>
-                        {%endfor%}
-                    </select>
-                    <span project_id='{{project.id}}' id="proj_add">add</span>
-
-                    <a href="{% url 'new_task' %}" class="btn btn-success btn-lg">New Task</a>
-
+                </div>
             </div>
+            <div class="row mt-2">
+                <h5>Tasks</h5>
+                <div class="col border rounded-3" style="height:200px;">
+                    <ul>
+                        {% for file in files %}
+                        <a href="{{ file.filename.url }}" class="btn btn-success btn-sm" target="_blank">
+                            {{ file.filename }}
+                        </a>
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-2 justify-content-center">
+                <a href="{% url 'new_task' %}" class="btn btn-primary w-25">New Task</a>
+            </div>
+            <div class="row mt-2">
+                <h5>People</h5>
+                <div class="col border rounded-3" style="height:200px;">
+                    <ul class="mt-3">
+                        {%for member in proj_members%}
+                        <div class="row">
+                            <a href="{{member.id}}" class="text-black" target="_blank" style="text-decoration:none;">
+                                {{member.username}}
+                            </a>
+                        </div>
+                            
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3 mb-5 justify-content-between">
+                <div class="col-5">
+                    <div class="row">
+                        <span project_id='{{project.id}}' id="proj_del">Remove from project</span>
+                    </div>
+                    <div class="row">
+                        <select class="" id='del_members'>
+                            <option></option>
+                            {%for member in proj_members%}
+                            <option value="{{member.id}}">{{member.username}}</option>
+                            {%endfor%}
+                        </select>
+                    </div> 
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <span project_id='{{project.id}}' id="proj_add">Add to project</span>
+                    </div>
+                    <div class="row">
+                        <select class="col" id='add_members'>
+                            <option></option>
+                            {%for member in proj_non_members%}
+                            <option value="{{member.id}}">{{member.username}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>   
+            </div>  
        </div>
-    </div>
-
 {% endblock content %}

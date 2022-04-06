@@ -101,7 +101,7 @@ def createProjectView(request):
         if Project.objects.filter(name=form.cleaned_data.get('name')):
             return redirect(reverse_lazy('projects'))
         p = Project(create_user=request.user, deadline=form.cleaned_data.get('deadline'),
-            discription=form.cleaned_data.get('discription'), name=form.cleaned_data.get('name'),
+            description=form.cleaned_data.get('description'), name=form.cleaned_data.get('name'),
             tasks=form.cleaned_data.get('tasks'))
 
         

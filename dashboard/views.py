@@ -41,7 +41,7 @@ def projectView(request, project_id):
         return redirect(reverse_lazy('login'))
     project = Project.objects.filter(id=project_id).first()
     if project:
-        res = model_to_dict(project, fields=['id', 'name', 'deadline', 'discription', 'tasks'])
+        res = model_to_dict(project, fields=['id', 'name', 'deadline', 'description', 'tasks'])
         file_query = ProjFile.objects.filter(project=project)
         file_number = file_query.count()
         file_infos = [str(f.filename) for f in file_query]

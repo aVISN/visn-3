@@ -30,7 +30,7 @@ class Project(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=False)
     deadline = models.DateTimeField()
-    discription = models.TextField()
+    description = models.TextField()
     tasks = models.TextField()
     create_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="author of project", related_name='create_user')
     members = models.ManyToManyField(User, verbose_name="members of project", related_name='pmembers')
@@ -105,7 +105,7 @@ class Task(models.Model):
 #     client = models.ForeignKey('DjUser', on_delete=models.CASCADE, related_name='client')
 #     name = models.CharField(max_length=100, null=False)
 #     deadline = models.DateTimeField()
-#     discription = models.TextField()
+#     description = models.TextField()
 
 #     def __str__(self):
 #         return self.name
@@ -118,7 +118,7 @@ class Task(models.Model):
 # class Project(models.Model):
 #     name = models.CharField(max_length=100, null=False)
 #     deadline = models.DateTimeField()
-#     discription = models.TextField()
+#     description = models.TextField()
 
 #     def __str__(self):
 #         return self.name
