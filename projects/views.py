@@ -82,6 +82,8 @@ def createProjectView(request):
     if not request.user.is_authenticated:
         return redirect(reverse_lazy('login'))
     context = {}
+    freelancer = User.objects.filter(is_superuser = True)
+    print(freelancer)
     users = User.objects.all()
     chat_form = MessageForm()
     context['target_users'] = users
@@ -101,11 +103,15 @@ def createProjectView(request):
         p = Project(create_user=request.user, deadline=form.cleaned_data.get('deadline'),
             discription=form.cleaned_data.get('discription'), name=form.cleaned_data.get('name'),
             tasks=form.cleaned_data.get('tasks'))
+
+        
         p.save()
-        print(form.cleaned_data.get('members'))
+        print("formdata: ",form.cleaned_data.get('members'))
         for m in form.cleaned_data.get('members')[:]:
             print(m)
             p.members.add(m)
+        # adds freelancer to project
+        p.members.add(freelancer[0])
         p.save()
         # name = form.cleaned_data.get('name')
         return redirect(reverse_lazy('projects'))  #
