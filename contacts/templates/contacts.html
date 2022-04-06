@@ -19,16 +19,16 @@
 					<div class="row text-center justify-content-center">
 					{%for user in contacts%}
 					<!-- users -->
-						<div class="col-3 border rounded-3 mx-2 mt-3" style="box-shadow: 2px 6px 6px #bdbdbd;">
-							<img src="{% static 'images/fake-pic-woman-running.png' %}" class="d-flex justify-content-center rounded-circle mx-auto mt-3" style="width:170px; height: 170px;" alt="...">
-							<div class=" mx-auto  my-3" style="width: 12rem;">
+						<div class="row border rounded-3 mx-2 mt-3 w-75" style="box-shadow: 2px 6px 6px #bdbdbd; background-color: rgb(162, 199, 236);">
+							<img src="{% static 'images/fake-pic-woman-running.png' %}" class=" rounded-circle ms-2 py-2 my-1 border border-secondary" style="width:170px; height: 170px;box-shadow: 2px 6px 6px #525252;background-color:black;" alt="...">
+							<div class=" mx-auto  my-3 border" style="width: 12rem;">
 								<div class=" p-0">
 									<h5 class="">{{user.username}}</h5>
 								</div>
-								<ul class="">
-								<li class="text-center">{{user.first_name}}</li>
-								<li class="">{{user.last_name}}</li>
-								<li class="">{{user.email}}</li>
+								<ul class="p-0">
+									<li class="">{{user.first_name}}</li>
+									<li class="">{{user.last_name}}</li>
+									<li class="">{{user.email}}</li>
 								</ul>
 							</div>
 						</div>

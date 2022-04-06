@@ -10,51 +10,53 @@
     {%for file in files%}
         <p>{{file.filename}}{{file.project.name}}{{file.comment}}</p>
     {%endfor%} -->
+<div class="container">
+    <div class="row">
+      <div class="p-5">
+        <p>
+          <!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
+          <a href="{% url 'new_file' %}" class="btn btn-lg" id="file-up-btn">Upload file</a>
+        </p>
 
-  <div class="col-md-10 p-5">
+          <div class="search-wrapper">
+            <form class="search">
+              <input class="search-inp"  type="text" name='search_text'><button class="search-btn">
+                  <i class="fas fa-search"></i>
+              </button>
+            </form>
+        </div>
+        <!-- Boostrap5 tables: https://www.w3schools.com/bootstrap5/bootstrap_tables.php -->
+        <table class="table table-hover mt-2">
 
-    <p>
-      <!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
-      <a href="{% url 'new_file' %}" class="btn btn-lg" id="file-up-btn">Upload file</a>
-    </p>
+          <thead>
+            <tr>
+              <th style="width: 25%">Author</th>
+              <th style="width: 30%">Project</th>
+              <th style="width: 40%">Comments</th>
+              <th style="width: 5%">Download</th>
+            </tr>
+          </thead>
 
-      <div class="search-wrapper">
-        <form class="search">
-           <input class="search-inp"  type="text" name='search_text'><button class="search-btn">
-              <i class="fas fa-search"></i>
-           </button>
-        </form>
-     </div>
-    <!-- Boostrap5 tables: https://www.w3schools.com/bootstrap5/bootstrap_tables.php -->
-    <table class="table table-hover">
+          <tbody>
+            {% for file in files %}
+              <tr>
+                <td>{{ file.author }}</td>
+                <td>{{ file.project }}</td>
+                <td>{{ file.comment }}</td>
+                <td>
+                  <a href="{{ file.filename.url }}" class="btn btn-success btn-sm" target="_blank">
+                    {{ file.filename }}
+                  </a>
+                </td>
+                <td><a href="{% url 'del_file' file.id %}">del</a></td>
+              <tr>
+            {% endfor %}
+          </tbody>
 
-      <thead>
-        <tr>
-          <th style="width: 25%">Author</th>
-          <th style="width: 30%">Project</th>
-          <th style="width: 40%">Comments</th>
-          <th style="width: 5%">Download</th>
-        </tr>
-      </thead>
+        </table>
 
-      <tbody>
-        {% for file in files %}
-          <tr>
-            <td>{{ file.author }}</td>
-            <td>{{ file.project }}</td>
-            <td>{{ file.comment }}</td>
-            <td>
-              <a href="{{ file.filename.url }}" class="btn btn-success btn-sm" target="_blank">
-                {{ file.filename }}
-              </a>
-            </td>
-            <td><a href="{% url 'del_file' file.id %}">del</a></td>
-          <tr>
-        {% endfor %}
-      </tbody>
-
-    </table>
-
-  </div> 
+      </div>
+  </div>
+</div>
 
 {% endblock content %}

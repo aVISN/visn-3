@@ -36,13 +36,15 @@
 				{% for group_project in projects %}
 					<div class="row text-center justify-content-center">
 						{%for project in group_project%}
-						<div class="border col-sm-3 p-3 rounded-3 mx-2 mt-3" style="box-shadow: 2px 6px 6px #bdbdbd;">
-							<p>
-							<!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
-							<a href="{% url 'project' project.id%}" class="btn btn-success btn-lg">{{project.name}}</a>
-							</p>
-							<p>{{project.description}}</p>
-						</div>
+						<a href="{% url 'project' project.id%}" class="col btn btn-lg rounded-3">
+							<div class="border p-3 rounded-3 mx-2 mt-3" style="box-shadow: 2px 6px 6px #bdbdbd; background-color: rgb(255, 246, 233);">
+								<h4>
+								<!-- Bootstrap5 buttons: https://www.w3schools.com/bootstrap5/bootstrap_buttons.php -->
+								{{project.name}}
+								</h4>
+								<p>{{project.description}}</p>
+							</div>
+						</a>
 						{%endfor%}
 					</div>
 	

@@ -3,7 +3,15 @@
 {% load crispy_forms_tags %} 
 
 {% block content %}
-    <h1> Single Project</h1>
+<div class="container w-75">
+	<div class="row mt-5 text-center m-0 p-0">
+		<div class="col-4 text-center">
+			<h1>Add new File</h1>
+		</div>
+		<div class="col-7 " >
+		</div>
+	</div>
+	<hr>
     <form method="POST" enctype="multipart/form-data">
 
        <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
@@ -11,8 +19,9 @@
  
        {{ form|crispy }}
     
-       <button type="submit" class="btn btn-success btn-lg">send</button>
+       <button type="submit" class="btn btn-primary btn-lg" style="float: right;">send</button>
  
     </form>
+</div>
 
 {% endblock content %}

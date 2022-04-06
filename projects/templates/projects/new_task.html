@@ -3,16 +3,24 @@
 {% load crispy_forms_tags %} 
 
 {% block content %}
-    <h1> New Task</h1>
+<div class="container">
+    <div class="row mt-5 text-center m-0 p-0">
+        <div class="col-4 text-center">
+            <h1>New Task</h1>
+        </div>
+        <div class="col-7 " >
+        </div>
+    </div>
+    <hr>
     <form method="POST">
 
        <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
        {% csrf_token %}
- 
-       {{ form|crispy }}
-    
-       <button type="submit" class="btn btn-success btn-lg">send</button>
- 
+        
+       <div class="container p-2 mb-5 w-75">
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary btn-lg" style="float:right;">Create new Task</button>
+        </div>
     </form>
-
+</div>
 {% endblock content %}
