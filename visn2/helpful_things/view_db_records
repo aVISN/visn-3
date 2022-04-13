@@ -2,3 +2,10 @@
 #Janky method to check DB
 
 #python manage.py dumpdata |  awk 'BEGIN { FS = "accounts.djuser" } ; { for (i=2;i<NF+1;i++) printf "%s \n \n", $i }';
+
+#Users
+
+echo "Users:";python ../../manage.py dumpdata |  awk 'BEGIN { FS = "username" } ; { for (i=2;i<NF+1;i++) printf "%s \n", $i }' | cut -d '"' -f 3
+
+#Projects
+echo "Projects:";python ../../manage.py dumpdata |  awk 'BEGIN { FS = "dashboard.project" } ; { for (i=2;i<NF+1;i++) printf "%s \n", $i }' | cut -d '"' -f 9

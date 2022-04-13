@@ -11,7 +11,7 @@ def projectsView(request):
     if not request.user.is_authenticated:
         return redirect(reverse_lazy('login'))
     context = {}
-
+    print(Project.objects.all().count())
     search_text = request.GET.get('search_text')
     if search_text:
         search_text = search_text.strip()

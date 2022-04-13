@@ -13,12 +13,12 @@ def dashboardView(request):
     context = {}
     if not request.user.is_authenticated:
         return redirect(reverse_lazy('login'))
-    projects = Project.objects.filter(Q(create_user=request.user) | Q(members=request.user)).all()[:]
+    projects = Project.objects.filter(Q(create_user=request.user) | Q(members=request.user)).distinct()[:]
     res = []
     for i in range(math.ceil(len(projects)/3)):
         res.append(projects[i * 3: (i+1)*3])
     context['projects'] = res
-    print(projects)
+    print(projects.count())
     users = User.objects.all()
     chat_form = MessageForm()
     context['target_users'] = users

@@ -10,48 +10,51 @@ def contactsView(request):
     if not request.user.is_authenticated:
         return redirect(reverse_lazy('login'))
     context = {}
-    # last_msgs = Message.objects.filter(Q(mto=request.user) | Q(mfrom=request.user)).order_by('-msgTime')[:12]
+    last_msgs = Message.objects.filter(Q(mto=request.user) | Q(mfrom=request.user)).order_by('-msgTime')[:12]
     # print(last_msgs)
     user_groups = []
     users = []
-    # for msg in last_msgs:
-    #     if msg.mto == request.user:
-    #         if msg.mfrom not in users:
-    #             users.append(msg.mfrom)
-    #     else:
-    #         if msg.mto not in users:
-    #             users.append(msg.mto)
-    # for user in users:
-    #     print(user.username, user.first_name, user.last_name, user.email)
-    # for i in range(math.ceil(len(users)/3)):
-    #     user_groups.append(users[i * 3: (i + 1) * 3])
+    for msg in last_msgs:
+        if msg.mto == request.user:
+            if msg.mfrom not in users:
+                users.append(msg.mfrom)
+        else:
+            if msg.mto not in users:
+                users.append(msg.mto)
+    for user in users:
+        print(user.username, user.first_name, user.last_name, user.email)
+    for i in range(math.ceil(len(users)/3)):
+        user_groups.append(users[i * 3: (i + 1) * 3])
 
     #----
-    # memberPIDs = []
     contacts = []
     projects = Project.objects.all()
-    for project in projects:
-        print("project: ",project)
-        members = project.members.all()
-        foundMatch = False
-        for member in members:
-            print("member: ",member)
-            if(member == request.user):
-                # memberPIDs.append(project.pk)
-                foundMatch = True
-                # print("!",project.pk,",",members,"!")
-        if(foundMatch):
+    freelancer = User.objects.filter(is_superuser = True)[0]
+
+    # IF freelancer, add all users to contacts
+    if(request.user == freelancer):
+                for member in User.objects.all():
+                    if(member != request.user):
+                        contacts.append(member)
+
+    #If not freelancer, only add freelancer and contacts from collective projects 
+    else:                    
+        for project in projects:
+            members = project.members.all()
+            foundMatch = False
             for member in members:
-                if(member != request.user):
-                    contacts.append(member)
-                    print("@",member)
+                if(member == request.user):
+                    foundMatch = True
+            if(foundMatch):
+                for member in members:
+                    if(member != request.user):
+                        if member not in contacts:
+                            contacts.append(member)
+
+        if freelancer not in contacts:
+            contacts.append(freelancer)    
 
     context['contacts'] = contacts
-
-    # for p_id in memberPIDs:
-    #     for member in projects.p_id.members:
-    #         if(member != request.user):
-    #             user_group.append(member)
 
     #---- 
 

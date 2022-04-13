@@ -25,8 +25,8 @@ $(function(){
                                 var deadlineconvert = new Date(datas['deadline']);
                                 console.log(datas);
                                 $('.project_name').text(datas['name']);
-                                $('.project_deadline').text(deadlineconvert);
-                                $('.project_discription').text(datas['discription']);
+                                $('.project_deadline').text("Due: "+deadlineconvert.toDateString());
+                                $('.project_description').text(datas['description']);
                                 $('.file_number').text(datas['file_number']);
                                 $('.create_user').text(datas['create_user']);
                                 create_content(datas);
