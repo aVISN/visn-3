@@ -2,7 +2,6 @@
     background-color: #f10215;
 }
 
-
 article{
     width: 1200px;
     height: 1000px;
@@ -11,55 +10,26 @@ article{
 }
 
 article ul{
-    width:1000px;
-    height: 1000px;
+    /* width:1000px; */
+    /* height: 1000px; */
    
 }
 
 .first li{
-    width: 800px;
-    height: 200px;
     font-size: 30px;
-    margin:15px 30px;
-    text-align: center;
-    overflow:scroll;
+    margin-top:15px;
+    overflow:auto;
     font-size: 20px;
+    border: 1px solid black;
+    height: 150px;
+}
+
+.chat_name
+{
+    width:100%;
     border: 1px solid black;
 }
 
-
-.first li:nth-child(1){
-    width: 1000px;
-    height: 150px;
-}
-
-.first li:nth-child(2){
-    width: 1000px;
-    height: 150px;
-}
-
-
-.first li:nth-child(3){
-    height: 150px;
-    width: 1000px;
-}
-
-
-.first li:nth-child(4){
-    width:1000px;
-    height: 150px;
-}
-
-.first li:nth-child(5){
-    width: 1000px;;
-    height: 150px;
-}
-
-
-.first li:nth-child(6){
-    width:1000px;
-    height: 150px;
-}
 
 
 

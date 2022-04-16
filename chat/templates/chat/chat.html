@@ -11,6 +11,10 @@
 
     
 {% block content %}
+
+<div class="container">
+
+
 <div class="col-md-10" style="text-align:center;padding-top:10px;">
    <div class="search-wrapper">
       <form class="search">
@@ -20,32 +24,52 @@
       </form>
    </div>
     <article class="article">
-       <ul class="first">
-           <li class= "Recent-chat">
+       <ul class="first row">
+           <!-- <li class= "Recent-chat">
               Recent chats 
               <div>
-               {% for msg in last_msgs %}
-                 <span class="rchat">
+               {# for msg in last_msgs #}
+                 <span class="rchat" style="display:block;">
                     [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}: {{msg.msg}}
                  </span>
-               {% endfor %}
+               {# endfor #}
               </div>
           
-           </li>
-
+           </li> -->
+           
             {%for talker, talks in last_talks%}
-           <li class="srol">
-               {{talker.username}} <span class="jia"> </a></span></a>
-               {%for msg in talks%}
-               <span class="rchat">
-                [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}: {{msg.msg}}
-                </span>
-                {%endfor%}
-             </li>
-             {%endfor%}
+         <div class="col-4">
+            <li class="" style="text-align: none;">
+                
+                {% for msg in talks reversed %}
+                   <div class="" style="width:100%; height:35px;">
+                      {% if msg.mfrom.id == request.user.id %}
+                      <span class="ps-5 mx-2" style="float:right">
+                      {%else%}
+                      <span class="pe-5 mx-2" style="float:left">
+                      {% endif %}
+                      <!-- [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}:--> 
+                      <span class="rounded-pill bg-info text-white py-1 px-2">{{msg.msg}}</span>
+                      </span>
+                   </div>
+                   
+                 {%endfor%}
+ 
+                 
+              </li>
+              
+              <div class="chat_name">
+                {{talker.username}}
+              </div>
+            </div>
+              {%endfor%}
+           
+            
 
        </ul>
    </article>
+</div>
+
 </div>
 
 </div>
