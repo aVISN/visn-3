@@ -2,34 +2,37 @@
     background-color: #f10215;
 }
 
-
 article{
-    width: 1200px;
-    height: 1000px;
+    /* width: 1200px;
+    height: 1000px; */
     padding: 1px 0;
     margin: 0 auto;
 }
 
 article ul{
-    width:1000px;
-    height: 1000px;
+    /* width:1000px; */
+    /* height: 1000px; */
    
-}
-
-first{
-    background-color: #f10215;
-    overflow:none;
 }
 
 .first li{
     font-size: 30px;
-    margin:15px 30px;
-    text-align: center;
-    /* overflow:scroll; */
+    margin-top:15px;
+    overflow:auto;
     font-size: 20px;
     border: 1px solid black;
-    width: 1000px;
     height: 150px;
+}
+
+.chat_name
+{
+    /* width:100%; */
+    border: 1px solid black;
+}
+
+#send-btn
+{
+    float:right;
 }
 
 

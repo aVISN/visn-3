@@ -1,5 +1,5 @@
 function openForm() {
-    document.getElementById("myForm").style.display = "block";
+    document.getElementById("myForm").style.display = "inline-block";
   }
   
   function closeForm() {
@@ -17,3 +17,9 @@ function chatIconOn(){
   var icon = document.getElementById("chat_ui");
     icon.style.display = "inline-block";
 }
+
+function toggleChat(className){
+  var chatbox = document.getElementById(className);
+    chatbox.classList.toggle('hide');
+}
+

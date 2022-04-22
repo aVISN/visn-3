@@ -6,40 +6,169 @@
 {% endblock %}
 
 
+<div class="container">
+
+    <div style="margin-right:75px;position:fixed;right:0;width:150px;">
+        {%for contact in contacts%}
+            {{contact.username}}
+        {%endfor%}
+    </div>
+
+
+    <div class="row align-self-center" style="margin-right:150px;position:fixed;bottom:0;right:0;width:100vw;">
+        
+        <!-- <div id="chat_ui" class="col" style=""> -->
+            <!-- top message history -->
+            <div class="col"></div>
+                <div class="col-4 " style="height:350px;">
+
+                    <!-- for talker, talks in last_talks -->
+                    <div id="chat-box" class="border bg-white rounded-3 p-5" style="margin-bottom:140px;height:350px;max-width:350px;">
+                        <div class="" style="">
+                            <div class="" style="width:100%; height:35px;">
+                                <!-- if id match current id -->
+                                <span class="ps-5 mx-2" style="float:right">
+                                
+                                    <span class="row rounded-pill bg-info text-white py-1 px-2">--message here--</span>
+                                    <span class="row rounded-pill bg-info text-white py-1 px-2">--message here--</span>
+                                </span>
+                                <!-- else -->
+                                <span class="pe-5 mx-2" style="float:left">
+
+                                <!-- endif --> 
+                                    <span class="row rounded-pill bg-info text-white py-1 px-2">--message here--</span>
+                                    <span class="row rounded-pill bg-info text-white py-1 px-2">--message here--</span>
+                                    <span class="row rounded-pill bg-info text-white py-1 px-2">--message here--</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact Name Bar -->
+                    <div id="chat-namebar" onclick="toggleChat('chat-box')" class="bg-secondary text-white ms-1 py-2 row w-100 justify-content-center border rounded-2" style="position:fixed;bottom:0; max-width:350px;">
+                        --NAME--
+                        <!-- ##contact.username## -->
+                        <!-- ##contact.id## -->
+                    </div>   
+                </div>
+                
+                <!-- ############################### -->
+                
+                <!-- ############################### -->
+            
+        <!-- </div> -->
+        <!-- ------------------------------------------------------ -->
+        <!-- <div  id="chat_ui" class="border col" style="display:none;"></div> -->
+            <!-- #for talker, talks in last_talks# -->
+            <!-- <div  class="col-4 border" > -->
+                <!-- <li class="" style="text-align: none;"> -->
+                    <!--  # for msg in talks reversed # --> 
+                        <!-- <div class="" style="width:100%; height:35px;"> -->
+                            <!--  # if msg.mfrom.id == request.user.id # --> 
+                            <!-- <span class="ps-5 mx-2" style="float:right"> -->
+                            <!--  #else# --> 
+                            <!-- <span class="pe-5 mx-2" style="float:left"> -->
+                            <!--  # endif # --> 
+                            <!-- [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}:--> 
+                            <!-- <span class="rounded-pill bg-info text-white py-1 px-2">{{msg.msg}}</span> -->
+                            <!-- </span> -->
+                        <!-- </div> -->
+                    <!--  #endfor#   --> 
+                    <!-- </li> -->
+                    
+                    <!-- <div onclick="openForm()" class="btn btn-info chat_name"> -->
+                    <!-- {{talker.username}} -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- #endfor# -->
+        <!-- </div> -->
+        <!-- ------------------------------------------------------ -->
+
+        <button class="col-1 " onclick="toggleChat('chat-namebar')" id="" style="position:fixed;bottom:0;right:0;background-color: rgba(255, 255, 255, 0); border:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+        
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- old chat -->
+
 
 <!-- Message Icon -->
-<div class="pe-3 pb-3" style="position:fixed;right:0;bottom:0;">
+<div class="pe-3 pb-3 row" style="position:fixed;right:0;bottom:0;">
+    
 
-<button onclick="chatIconOff()" id="chat_ui" style="background-color: rgba(255, 255, 255, 0); border:none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
-            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-            <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-</button>
+    <!-- <button onclick="chatIconOff()" id="chat_ui" style="background-color: rgba(255, 255, 255, 0); border:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+    </button> -->
 
 
-<!-- <div id="chatback" style="display: none;position: absolute;top: 0%; left:0%; width:100%; height:1100px; background-color:black; z-index:1;-moz-opacity: 0.5; opacity:0.5;"></div> -->
+    <!-- <div id="chatback" style="display: none;position: absolute;top: 0%; left:0%; width:100%; height:1100px; background-color:black; z-index:1;-moz-opacity: 0.5; opacity:0.5;"></div> -->
 
     <li id="chat_li" class="" style="display: none; border:3px solid #ccc;background:white;z-index: 3;width: 340px; height: 240px; padding: 10px;"> <!--position: absolute;top:68%;left:72%;-->
         <label id="x" onclick="chatIconOn()" style="position: relative;top:0px;left: 95%;font-size: 25px;cursor: pointer;">x</label>
         <div>
-        {% for target_user in target_users%}
-        <button class="talker_button btn-sm btn-outline-success" talker="{{target_user.username}}" >{{target_user.username}}</button>
-        {%endfor%}
+            {% for target_user in target_users%}
+                <button class="talker_button btn-sm btn-outline-success" talker="{{target_user.username}}" >{{target_user.username}}</button>
+            {%endfor%}
         </div>
         <form method="POST">
 
-        <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
-        {% csrf_token %}
+            <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
+            {% csrf_token %}
+            
+            {{ chat_form }} <!--|crispy-->
+            
+            <button type="submit" class="btn btn-light btn-sm" id="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                </svg>
+            </button>
     
-        {{ chat_form }} <!--|crispy-->
         
-        <button type="submit" class="btn btn-light btn-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-            </svg>
-        </button>
-    
+            
         </form>
     </li>
+        <!-- chat message boxes with names -->
+        <div>
+            {%for talker, talks in last_talks%}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4" style="display: none;">
+                            <li class="" style="text-align: none;">
+                                {% for msg in talks reversed %}
+                                    <div class="" style="width:100%; height:35px;">
+                                        {% if msg.mfrom.id == request.user.id %}
+                                        <span class="ps-5 mx-2" style="float:right">
+                                        {%else%}
+                                        <span class="pe-5 mx-2" style="float:left">
+                                            {% endif %}
+                                            <!-- [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}:--> 
+                                            <span class="rounded-pill bg-info text-white py-1 px-2">{{msg.msg}}</span>
+                                        </span>
+                                    </div>
+                                {%endfor%}
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+
+        
+    
 </div>
+

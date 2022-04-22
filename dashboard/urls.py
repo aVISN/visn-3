@@ -3,6 +3,8 @@ from django.urls import include,path
 from . import views
 # from .views import CustomLoginView
 
+from chat.views import chatView
+
 urlpatterns = [
     # path('login/', CustomLoginView.as_view(), name='login'),
     path('', views.dashboardView, name='dashboard'),

@@ -17,4 +17,8 @@ $(function(){
         $('#chatback').css('display', 'none');
     });
 
+    // $('#chat-namebar').click(function(){
+    //     $('#chat-box').toggle();
+    // });
+
 });
