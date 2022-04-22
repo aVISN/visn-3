@@ -17,8 +17,26 @@ $(function(){
         $('#chatback').css('display', 'none');
     });
 
-    // $('#chat-namebar').click(function(){
-    //     $('#chat-box').toggle();
-    // });
+    $('#chat-namebar').click(function(){
+        $('#chat-box').toggle();
+    });
+
+    $('#chat-icon').click(function(){
+        if($('#chat-box').css('display') == 'none' && $('#chat-namebar').css('display') == 'none')
+        {
+            $('#chat-box').toggle();
+            $('#chat-namebar').toggle();
+        }
+        else if($('#chat-box').css('display') == 'none')
+        {
+            $('#chat-namebar').toggle();
+        }
+        else
+        {
+            $('#chat-box').toggle();
+            $('#chat-namebar').toggle();
+        }
+        
+    });
 
 });

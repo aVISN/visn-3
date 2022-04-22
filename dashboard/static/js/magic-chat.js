@@ -18,8 +18,21 @@ function chatIconOn(){
     icon.style.display = "inline-block";
 }
 
-function toggleChat(className){
-  var chatbox = document.getElementById(className);
-    chatbox.classList.toggle('hide');
-}
+// function toggleChat(className){
+//   var chatBox = document.getElementById('chat-box');
+//   var chatName = document.getElementById('chat-namebar');
+  
+//   if(className = 'chat-box')
+//   {
+//     chatBox.classList.toggle('chat-hide');
+//     document.getElementById('chat-box').style.display = "none";
+
+//   }
+//   else
+//   {
+//     chatBox.classList.toggle('chat-hide');
+//     chatName.classList.toggle('chat-hide');
+//   }
+  
+// }
 

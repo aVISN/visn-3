@@ -17,3 +17,9 @@ function chatIconOn(){
   var icon = document.getElementById("chat_ui");
     icon.style.display = "inline-block";
 }
+
+function toggleChat(className){
+  var chatbox = document.getElementById(className);
+    chatbox.classList.toggle('chat-hide');
+}
+

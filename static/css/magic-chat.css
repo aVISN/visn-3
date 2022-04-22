@@ -73,3 +73,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+/* hide class */
+.chat-hide
+{
+  display:none !important;
+}
+
+/* show class */
+.show
+{
+  display:block;
+}
