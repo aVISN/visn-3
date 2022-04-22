@@ -5,14 +5,17 @@
     <script src="{% static 'js/magic-chat.js' %}" ></script>     
 {% endblock %}
 
+<div id="chat-contacts" class="bg-dark text-white rounded-start " style="width:140px;position:fixed;right: 0px;bottom:100px;">
+    
+    {%for contact in contacts%}
+    <div id="chat-contact" contact_id='{{contact.id}}' class="btn row align-items-center justify-content-center border-bottom border-white"style="color:rgb(250, 212, 107);float:right;height:40px;width:150px;">{{contact.username}}</div>
+    {%endfor%}
+</div>
+
 
 <div class="container">
 
-    <div style="margin-right:75px;position:fixed;right:0;width:150px;">
-        {%for contact in contacts%}
-            {{contact.username}}
-        {%endfor%}
-    </div>
+    
 
 
     <div class="row align-self-center" style="margin-right:150px;position:fixed;bottom:0;right:0;width:100vw;">
@@ -23,8 +26,8 @@
                 <div class="col-4 " style="height:350px;">
 
                     <!-- for talker, talks in last_talks -->
-                    <div id="chat-box" class="border bg-white rounded-3 p-5" style="margin-bottom:140px;height:350px;max-width:350px;">
-                        <div class="" style="">
+                    <div id="chat-box" class="border bg-white rounded-3" style="margin-bottom:140px;height:350px;max-width:350px;">
+                        <div class="p-5 border" style="height:255px">
                             <div class="" style="width:100%; height:35px;">
                                 <!-- if id match current id -->
                                 <span class="ps-5 mx-2" style="float:right">
@@ -42,10 +45,24 @@
                                 </span>
                             </div>
                         </div>
+                    
+                        <!-- message input -->
+                        <form  method="POST">
+                            <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
+                            {% csrf_token %}
+                            
+                            <div class="col" style="display: inline-block;">{{ chat_form.message }}</div> <!--|crispy-->
+                            
+                            <button type="submit" class="col btn btn-light btn-sm me-1 mt-3 bg-white" id="send-btn" style="display: inline-block;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                     <!-- Contact Name Bar -->
                     <!-- toggleChat('chat-box') -->
-                    <div id="chat-namebar" onclick="" class="bg-secondary text-white ms-1 py-2 row w-100 justify-content-center border rounded-2" style="position:fixed;bottom:0; max-width:350px;">
+                    <div id="chat-namebar" onclick="" class="bg-secondary text-white py-2 row w-100 justify-content-center border rounded-2" style="margin-left:0px;position:fixed;bottom:0; max-width:350px;">
                         --NAME--
                         <!-- ##contact.username## -->
                         <!-- ##contact.id## -->
