@@ -95,24 +95,24 @@ $(function(){
     // });
 
     // chat
-    $("chat-contact").on('click', '#chat-namebar', function(){
-        // alert($(this).attr('project_id'));
-        contact_id = $(this).attr('value');
-        $.ajax({url: "/dashboard/project_view/" + project_id + '/', 
-                dataType: "json",
-                success: function(datas){
-                                var deadlineconvert = new Date(datas['deadline']);
-                                console.log(datas);
-                                $('.project_name').text(datas['name']);
-                                $('.project_deadline').text("Due: "+deadlineconvert.toDateString());
-                                $('.project_description').text(datas['description']);
-                                $('.file_number').text(datas['file_number']);
-                                $('.create_user').text(datas['create_user']);
-                                create_content(datas);
-                                create_content2(datas);
-                            },
-                error: function(xhr, type){alert("'Ajax Error!'");}}
-            );
-    });
+    // $("chat-contact").on('click', '#chat-namebar', function(){
+    //     // alert($(this).attr('project_id'));
+    //     contact_id = $(this).attr('contact_id');
+    //     $.ajax({url: "/dashboard/project_view/" + project_id + '/', 
+    //             dataType: "json",
+    //             success: function(datas){
+    //                             var deadlineconvert = new Date(datas['deadline']);
+    //                             console.log(datas);
+    //                             $('.project_name').text(datas['name']);
+    //                             $('.project_deadline').text("Due: "+deadlineconvert.toDateString());
+    //                             $('.project_description').text(datas['description']);
+    //                             $('.file_number').text(datas['file_number']);
+    //                             $('.create_user').text(datas['create_user']);
+    //                             create_content(datas);
+    //                             create_content2(datas);
+    //                         },
+    //             error: function(xhr, type){alert("'Ajax Error!'");}}
+    //         );
+    // });
 
 });

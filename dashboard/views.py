@@ -35,9 +35,9 @@ def dashboardView(request):
     context['navbar'] = 'dashboard'
 
     ##### ADDDDDing Chat here ##----------------------------------------------------------------------------------------------
-    if not request.user.is_authenticated:
-        return redirect(reverse_lazy('login'))
-    context = {}
+    # if not request.user.is_authenticated:
+    #     return redirect(reverse_lazy('login'))
+    # context = {}
     if request.method == 'POST':
         f = MessageForm(request.POST)
         print('aaa')
