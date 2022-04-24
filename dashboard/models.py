@@ -52,6 +52,14 @@ class Task(models.Model):
     status = models.BooleanField(default=False)
     project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='tproject')
 
+# added model for chat !!!
+# class Contact(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user1')
+#     user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user2')
+
+
+
 # class Upload(models.Model):
 #     description = models.CharField(max_length=100)
 #     comments = models.TextField(blank=True)

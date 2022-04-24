@@ -19,29 +19,56 @@ $(function(){
 
 
     // chat UI
-    $('#chat-namebar').click(function(){
-        $('#chat-box').toggle();
-    });
+    // $('#chat-namebar').click(function(){
+    //     $('#chat-box').toggle();
+    // });
 
     $('#chat-icon').click(function(){
-        if($('#chat-box').css('display') == 'none' && $('#chat-namebar').css('display') == 'none')
+        if($('#all-chat').css('display') == 'none')
         {
-            $('#chat-box').toggle();
-            $('#chat-namebar').toggle();
-            $('#chat-contacts').toggle();
-        }
-        else if($('#chat-box').css('display') == 'none')
-        {
-            $('#chat-namebar').toggle();
-            $('#chat-contacts').toggle();
+            $('#chat-contacts').toggle(); 
         }
         else
         {
-            $('#chat-box').toggle();
-            $('#chat-namebar').toggle();
             $('#chat-contacts').toggle();
+            $('#all-chat').toggle();
         }
+    });
+    $('#chat-contacts').click(function(){
+        if($('#all-chat').css('display') == 'none')
+        {
+            $('#all-chat').toggle();   
+        }
+        
         
     });
 
+    // ------------------ chat contacts? !!!!!!!!!!!! --------------------------------------------------------------------
+    // 
+    // $("body").on('click', '#chat-contact', function(){
+    //     // alert($(this).attr('contact_id'));
+    //     contact_id = $(this).attr('contact_id');
+    //     $.ajax({url: "/dashboard/contact_view/" + contact_id + '/', 
+    //             dataType: "json",
+    //             success: function(datas){
+    //                             console.log(datas);
+    //                             $('#chat-namebar').text(datas['username']);
+    //                         },
+    //             error: function(xhr, type){alert("'Ajax Error!'");}}
+    //         );
+    // });
+
+    // --------------- chat window --------------------------
+    $("body").on('click', '#chat-contact', function(){
+        // alert($(this).attr('contact_id'));
+        contact_id = $(this).attr('contact_id');
+        $.ajax({url: "/dashboard/chat_view/" + contact_id + '/', 
+                dataType: "json",
+                success: function(datas){
+                                console.log(datas);
+                                $('#chat-namebar').text(datas['username']);
+                            },
+                error: function(xhr, type){alert("'Ajax Error!'");}}
+            );
+    });
 });
