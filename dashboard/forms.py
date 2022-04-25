@@ -23,7 +23,7 @@ class NewProjForm(forms.ModelForm):
         exclude = ['create_user', ]
         
 class MessageForm(forms.Form):
-    mto = forms.CharField(min_length=5, label='to name', required=True, widget=forms.HiddenInput())
+    mto = forms.CharField(min_length=1, label='to name', required=True, widget=forms.HiddenInput())
     message = forms.CharField(widget=widgets.Textarea(attrs={'cols':30,'rows': 2}), label='', required=True)
 
 class NewTaskForm(forms.ModelForm):

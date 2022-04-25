@@ -91,7 +91,7 @@ def chatView(request, contact_id):
     # context = {}
 
     print('mto:',mto)
-    print('request.method:',request.method)
+    # print('request.method:',request.method)
     if request.method == 'POST':
         f = MessageForm(request.POST)
         # print('message:',Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto))
@@ -102,7 +102,7 @@ def chatView(request, contact_id):
             # mto = User.objects.filter(id=contact_id).first()
             
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
-            print(Message)
+            print('Message',Message)
 
     search_text = ''
     # if request.method == 'GET':
@@ -125,10 +125,17 @@ def chatView(request, contact_id):
             talkers.add(talk.mto)
     
     last_talks = []
-    for talker in talkers:
-        last_talks.append([talker, Message.objects.filter(Q(mto=talker, mfrom=request.user) | Q(mto=request.user, mfrom=talker)).order_by('-msgTime')[:10]])
-    form = MessageForm()
+    # for talker in talkers:
+    #     last_talks.append([talker, Message.objects.filter(Q(mto=talker, mfrom=request.user) | Q(mto=request.user, mfrom=talker)).order_by('-msgTime')[:10]])
 
+    talker = mto
+    last_talks = [Message.objects.filter(Q(mto=talker, mfrom=request.user) | Q(mto=request.user, mfrom=talker)).order_by('-msgTime')[:10]]
+    # form = MessageForm()
+    if(last_talks[0][0]):
+        res['last_msgs'] =[model_to_dict(m, fields=['id','mfrom','mto','msg','msgTime']) for m in last_talks[0]]
+        for m in last_talks[0]:
+            # for msg in m:
+            print('lastTalks:',m.msg)
     # print(last_talks[0][1][0].msg)
     # context['last_msgs'] = last_msgs
     # context['chat_form'] = form
@@ -136,11 +143,14 @@ def chatView(request, contact_id):
     # context['target_users'] = User.objects.all()
 
     # context['navbar'] = 'chat'
-
-    # print("last_msgs:",last_msgs[0].msg)
-    res['last_msgs'] = [model_to_dict(m, fields=['id','mfrom','mto','msg','msgTime']) for m in last_msgs] ##
-    # res['chat_form'] = form
     # print("last_talks:",last_talks[0],"-",last_talks[0][1][0].msg)
+    # print("last_msgs:",last_msgs[0].msg)
+    # if(last_talks[0])
+    # ########
+    # res['last_msgs'] = [model_to_dict(m, fields=['id','mfrom','mto','msg','msgTime']) for m in last_msgs] ##
+    ########## res['last_msgs'] = model_to_dict(fields=['id','mfrom','mto','msg','msgTime']) ##
+    # res['chat_form'] = form
+    
     chatMessages = {}
     # for q in last_talks[0][1]:
     #     # print(q)
