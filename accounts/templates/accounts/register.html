@@ -28,7 +28,7 @@
                 </label>
              </div>
             <div class="text-box">
-                <!-- <input type="email" class="form-control" id="roundcorners" required autocomplete="off" value="{{email}}"> -->
+                <!-- <input type="bob" class="form-control" id="roundcorners" required autocomplete="off" value="{{bob}}"> -->
                 {{form.email}}
                 <label for="user_name" class="label-name">
                     <span class="content-name">Email</span>
@@ -55,6 +55,12 @@
                     <span class="content-name">{{form.password1.label}}</span>
                 </label>
              </div>
+		<ul>
+		<li>Your password can't be too similar to your other personal information</li>
+		<li>Your password must be at least 8 characters</li>
+		<li>Your password cannot be a commonly used password</li>
+		<li>Your password cannot be entirely numaric</li>
+		</ul>
              <div class="text-box">
                 <!-- <input type="password" class="form-control" id="roundcorners" required autocomplete="off"> -->
                 <input type="password" class="form-control" id="roundcorners" name="password2" required id="id_password2" required autocomplete="off">
