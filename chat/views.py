@@ -131,7 +131,8 @@ def chatView(request, contact_id):
     talker = mto
     last_talks = [Message.objects.filter(Q(mto=talker, mfrom=request.user) | Q(mto=request.user, mfrom=talker)).order_by('-msgTime')[:10]]
     # form = MessageForm()
-    if(last_talks[0][0]):
+    # print(len(last_talks[0]))
+    if(len(last_talks[0]) > 0):
         res['last_msgs'] =[model_to_dict(m, fields=['id','mfrom','mto','msg','msgTime']) for m in last_talks[0]]
         for m in last_talks[0]:
             # for msg in m:

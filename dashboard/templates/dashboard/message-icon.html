@@ -22,7 +22,7 @@
             <div class="col-4 " style="height:350px;">
 
                 <div id="chat-box" class="border bg-white rounded-3" style="margin-bottom:140px;height:350px;max-width:350px;">
-                    <div id="user-message" class="p-3 border text-center" style="overflow:auto;height:255px;">
+                    <div id="user-message" class="p-3 border text-center" style="overflow:auto;height:235px;">
                         <!-- messages are here -->
                     </div>
                         <!-- message input -->
@@ -30,7 +30,7 @@
                             <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
                             {% csrf_token %}
                             
-                            <div class="col" style="display: inline-block;">{{ chat_form|crispy }}</div> <!--|crispy{{ chat_form.message }}-->
+                            <div class="col mt-2 ms-2" style="display: inline-block;">{{ chat_form }}</div> <!--|crispy{{ chat_form.message }}-->
                             <!-- hidden field -->
                             <!-- {{chat_form.mto}} -->
                             <button type="submit" class="col btn btn-light btn-sm me-1 mt-3 bg-white" id="send-btn" style="display: inline-block;">

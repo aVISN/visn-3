@@ -24,7 +24,7 @@ class NewProjForm(forms.ModelForm):
         
 class MessageForm(forms.Form):
     mto = forms.CharField(min_length=1, label='to name', required=True, widget=forms.HiddenInput())
-    message = forms.CharField(widget=widgets.Textarea(attrs={'cols':30,'rows': 2}), label='', required=True)
+    message = forms.CharField(widget=widgets.Textarea(attrs={'cols':33,'rows': 2,'style':'resize:none;'}), label='', required=True)
 
 class NewTaskForm(forms.ModelForm):
     class Meta:
