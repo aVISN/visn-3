@@ -21,74 +21,52 @@
             <div class="col"></div>
             <div class="col-4 " style="height:350px;">
 
-                <!-- for talker, talks in last_talks -->
                 <div id="chat-box" class="border bg-white rounded-3" style="margin-bottom:140px;height:350px;max-width:350px;">
-                    <div class="p-3 border text-center" style="overflow:auto;height:255px;">
-                        <!--  -->
-                        <div class="row ps-5 p-2" style="display:block;float:right;width:350px;height:35px;">
-                                <!-- if id match current id -->
-                                <div class="rounded-pill bg-info text-white py-1 px-2" style="float:left;max-width: 150px;">--message here--</div>
-                        </div>
-                            <!--  -->
-                            <!--  -->
-                            <div class="row ps-5 p-2" style="display:block;float:right;width:350px;height:35px;">
-                                    <!-- if id match current id -->
-                                    <div class="rounded-pill bg-info text-white py-1 px-2" style="float:left;max-width: 150px;">--message here--</div>
-                            </div>
-                            <!--  -->
-                            <!-- else -->    
-                            <!--  -->
-                            <div class="row p-2" style="display:block;float:right;width:350px;height:35px;">
-                                    <!-- if id match current id -->
-                                    <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                            </div>
-                            <!--  -->
-                            <!--  -->
-                            <div class="row p-2" style="float:right;display:block;width:350px;height:35px;">
-                                    <!-- if id match current id -->
-                                    <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                            </div>
-                            <!--  -->
-                            <!--  -->
-                            <div class="row p-2" style="display:block;float:right;width:350px;height:35px;">
-                                <!-- if id match current id -->
-                                <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                        </div>
-                        <!--  -->
-                        <!--  -->
-                        <div class="row p-2" style="float:right;display:block;width:350px;height:35px;">
-                                <!-- if id match current id -->
-                                <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                        </div>
-                        <!--  -->
-                        <!--  -->
-                        <div class="row p-2" style="display:block;float:right;width:350px;height:35px;">
-                            <!-- if id match current id -->
-                            <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                        </div>
-                        <!--  -->
-                        <!--  -->
-                        <div class="row p-2" style="float:right;display:block;width:350px;height:35px;">
-                                <!-- if id match current id -->
-                                <div class="rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">--message here--</div>
-                        </div>
-                        <!--  -->
-                    
+                    <div id="user-message" class="p-3 border text-center" style="overflow:auto;height:255px;">
+                        <!-- messages are here -->
                     </div>
                         <!-- message input -->
-                        <form  method="POST">
+                        <form  id="chat-form" method="POST">
                             <!-- Cross Site Request Forgery: https://docs.djangoproject.com/en/3.2/ref/csrf/ -->
                             {% csrf_token %}
                             
-                            <div class="col" style="display: inline-block;">{{ chat_form.message }}</div> <!--|crispy-->
-                            
+                            <div class="col" style="display: inline-block;">{{ chat_form|crispy }}</div> <!--|crispy{{ chat_form.message }}-->
+                            <!-- hidden field -->
+                            <!-- {{chat_form.mto}} -->
                             <button type="submit" class="col btn btn-light btn-sm me-1 mt-3 bg-white" id="send-btn" style="display: inline-block;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                                     <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
                                 </svg>
                             </button>
                         </form>
-                    
+                    <!-- ############################### -->
+                    {%for talker, talks in last_talks%}
+                        <div class="col-4">
+                            <li class="" style="text-align: none;">
+                                
+                                {% for msg in talks reversed %}
+                                    <div class="" style="width:100%; height:35px;">
+                                        {% if msg.mfrom.id == request.user.id %}
+                                        <span class="ps-5 mx-2" style="float:right">
+                                        {%else%}
+                                        <span class="pe-5 mx-2" style="float:left">
+                                        {% endif %}
+                                        [{{msg.msgTime}}] {{msg.mfrom.username}} TO {{msg.mto.username}}: 
+                                        <span class="rounded-pill bg-info text-white py-1 px-2">{{msg.msg}}</span>
+                                        </span>
+                                    </div>
+                                    
+                                {%endfor%}
+
+                                
+                                </li>
+                                
+                                <div class="chat_name">
+                                {{talker.username}}
+                                </div>
+                            </div>
+                        {%endfor%}
+                    <!-- ############################### -->
                     <!-- Contact Name Bar -->
                     <!-- toggleChat('chat-box') -->
                     <div id="chat-namebar" onclick="" class="bg-secondary text-white py-2 row w-100 justify-content-center border rounded-2" style="margin-left:0px;position:fixed;bottom:0; max-width:350px;">
@@ -98,9 +76,7 @@
                     </div>   
                 </div>
                     
-                    <!-- ############################### -->
                     
-                    <!-- ############################### -->
                 
                     <!-- </div> -->
                     <!-- ------------------------------------------------------ -->

@@ -23,15 +23,16 @@ def dashboardView(request):
     chat_form = MessageForm()
     context['target_users'] = users
     context['chat_form'] = chat_form
-    if request.method == 'POST':
-        f = MessageForm(request.POST)
-        print('aaa')
-        if f.is_valid():
-            print('save')
-            to_name = f.cleaned_data.get('mto')
-            mto = User.objects.filter(username=to_name).first()
-            Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
-
+    # ---- message -------------
+    # if request.method == 'POST':
+    #     f = MessageForm(request.POST)
+    #     print('dashboardView aaa')
+    #     if f.is_valid():
+    #         to_name = f.cleaned_data.get('mto')
+    #         mto = User.objects.filter(username=to_name).first()
+    #         Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
+    #         print('Message:',Message)
+    # ---------------------------------
     context['navbar'] = 'dashboard'
     
     # # ------------- below was added to dashview -----------------------------
@@ -86,6 +87,7 @@ def projectView(request, project_id):
         res['file_number'] = file_number
         res['file_infos'] = file_infos
         res['create_user'] = project.create_user.username
+        # print(res)
         return JsonResponse(res)
 
  ##### ADDDDDing Contacts here ##------------do same as projectView -----------------------------------------------
