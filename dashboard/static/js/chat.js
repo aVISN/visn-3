@@ -81,7 +81,7 @@ $(function(){
         $.each(datas['last_msgs'], function(index,item){
             console.log('msg['+item.mfrom+'-'+item.mto+']:'+item.msg);
             if(item.mto != contact_id){
-                userContent.prepend($('<div  class="row ps-5 p-2" style="display:block;float:right;width:350px;height:35px;"><div class="mt-1 rounded-pill bg-info text-white py-1 px-2" style="float:left;max-width: 150px;">'+item.msg+'</div></div>'));
+                userContent.prepend($('<div  class="row ps-3 p-2" style="display:block;float:right;width:350px;height:35px;"><div class="mt-1 rounded-pill bg-info text-white py-1 px-2" style="float:left;max-width: 150px;">'+item.msg+'</div></div>'));
             }
             else{
                 userContent.prepend($('<div class="row p-2" style="display:block;float:right;width:350px;height:35px;"><div class="mt-1 rounded-pill bg-secondary text-white py-1 px-2" style="float:right;max-width: 150px;">'+item.msg+'</div></div>'));
