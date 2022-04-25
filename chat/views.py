@@ -138,7 +138,7 @@ def chatView(request, contact_id):
     # context['navbar'] = 'chat'
 
     # print("last_msgs:",last_msgs[0].msg)
-    res['last_msgs'] = [m.msg for m in last_msgs] #model_to_dict(last_msgs, fields=['id','mfrom','mto','msg','msgTime'])#
+    res['last_msgs'] = [model_to_dict(m, fields=['id','mfrom','mto','msg','msgTime']) for m in last_msgs] ##
     # res['chat_form'] = form
     # print("last_talks:",last_talks[0],"-",last_talks[0][1][0].msg)
     chatMessages = {}
