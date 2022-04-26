@@ -83,6 +83,7 @@ def singleProjectView(request, project_id):
         return redirect(reverse_lazy('projects'))
     context['project'] = project
     context['files'] = ProjFile.objects.filter(project=project).all()
+    context['tasks'] = Task.objects.filter(project=project).all()
     users = User.objects.all()
 
     proj_members = list(project.members.all())
