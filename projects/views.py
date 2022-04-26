@@ -41,6 +41,36 @@ def projectsView(request):
             Message(mfrom=request.user, msg=f.cleaned_data.get('message'), mto=mto).save()
 
     context['navbar'] = 'projects'
+    # # ------------- below was added to dashview -----------------------------
+    contacts = []
+    projects = Project.objects.all()
+    freelancer = User.objects.filter(is_superuser = True)[0]
+
+    # IF freelancer, add all users to contacts
+    if(request.user == freelancer):
+                for member in User.objects.all():
+                    if(member != request.user):
+                        contacts.append(member)
+
+    #If not freelancer, only add freelancer and contacts from collective projects 
+    else:                    
+        for project in projects:
+            members = project.members.all()
+            foundMatch = False
+            for member in members:
+                if(member == request.user):
+                    foundMatch = True
+            if(foundMatch):
+                for member in members:
+                    if(member != request.user):
+                        if member not in contacts:
+                            contacts.append(member)
+
+        if freelancer not in contacts:
+            contacts.append(freelancer)    
+
+    context['contacts'] = contacts
+#####----------------------------------------------------------------------------------------------
 
     return render(request, 'projects/projects.html', context)
 
@@ -108,10 +138,13 @@ def createProjectView(request):
         p.save()
         print("formdata: ",form.cleaned_data.get('members'))
         for m in form.cleaned_data.get('members')[:]:
+            if (m != request.user):
+                p.members.add(request.user)
             print(m)
             p.members.add(m)
         # adds freelancer to project
         p.members.add(freelancer[0])
+        
         p.save()
         # name = form.cleaned_data.get('name')
         return redirect(reverse_lazy('projects'))  #

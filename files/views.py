@@ -34,6 +34,37 @@ def filesView(request):
 
     context['navbar'] = 'files'
 
+    # # ------------- below was added to dashview -----------------------------
+    contacts = []
+    projects = Project.objects.all()
+    freelancer = User.objects.filter(is_superuser = True)[0]
+
+    # IF freelancer, add all users to contacts
+    if(request.user == freelancer):
+                for member in User.objects.all():
+                    if(member != request.user):
+                        contacts.append(member)
+
+    #If not freelancer, only add freelancer and contacts from collective projects 
+    else:                    
+        for project in projects:
+            members = project.members.all()
+            foundMatch = False
+            for member in members:
+                if(member == request.user):
+                    foundMatch = True
+            if(foundMatch):
+                for member in members:
+                    if(member != request.user):
+                        if member not in contacts:
+                            contacts.append(member)
+
+        if freelancer not in contacts:
+            contacts.append(freelancer)    
+
+    context['contacts'] = contacts
+#####----------------------------------------------------------------------------------------------
+
     return render(request, 'files/files.html', context)
 
 

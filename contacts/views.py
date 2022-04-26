@@ -30,21 +30,27 @@ def contactsView(request):
     contacts = []
     projects = Project.objects.all()
     freelancer = User.objects.filter(is_superuser = True)[0]
+    contact_users = User.objects.all()
 
+    print('isFreelancer:',request.user == freelancer)
     # IF freelancer, add all users to contacts
     if(request.user == freelancer):
-                for member in User.objects.all():
+                for member in contact_users:
                     if(member != request.user):
                         contacts.append(member)
 
     #If not freelancer, only add freelancer and contacts from collective projects 
     else:                    
         for project in projects:
+            print(project,':',project.members.all())
             members = project.members.all()
             foundMatch = False
             for member in members:
+                print('proj member:',member)
+                print('user:',request.user)
                 if(member == request.user):
                     foundMatch = True
+            print('foundmatch:',foundMatch)
             if(foundMatch):
                 for member in members:
                     if(member != request.user):
@@ -53,7 +59,7 @@ def contactsView(request):
 
         if freelancer not in contacts:
             contacts.append(freelancer)    
-
+    print(contacts)
     context['contacts'] = contacts
 
     #---- 
